@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dynamic Webpage</title>
+    <link rel="stylesheet" href="hello.css">
+</head>
+<body>
+
+   <div class="content-box">
+        <h1 id="welcome-text">WELCOME TO MY WEB PAGE</h1>
+        
+        <div id="thank-you-msg" class="subtext" style="display: none;">Thank you for logging into my webpage!</div>
+
+        <button id="create-btn" class="btn-main" onclick="openPopup('login-popup')">Create Your Account</button>
+    </div>
+
+    <div id="profile-sec" class="profile-section">
+        <div class="profile-info">
+            <div id="profile-pic" class="profile-circle">U</div>
+            <span id="display-username" class="profile-username">Username</span>
+        </div>
+        <button class="btn-logout" onclick="logout()">Log Out</button>
+    </div>
+
+    <div id="login-popup" class="overlay">
+        <div class="popup-box">
+            <span class="close-btn" onclick="closePopup('login-popup')">&times;</span>
+            <h2>Log In</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="login-username" required placeholder="Enter Username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required placeholder="Enter Password">
+                </div>
+                <div class="form-links">
+                    <a href="#" onclick="alert('Password reset link sent!')">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-submit">Log In</button>
+            </form>
+            <div class="popup-footer">
+                Don't have an account? <span class="switch-link" onclick="switchPopup('login-popup', 'signup-popup')">Sign Up</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup-popup" class="overlay">
+        <div class="popup-box">
+            <span class="close-btn" onclick="closePopup('signup-popup')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="signup-name" required placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required placeholder="Create Password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" required placeholder="Confirm Password">
+                </div>
+                <button type="submit" class="btn-submit">Sign Up</button>
+            </form>
+            <div class="popup-footer">
+                Already have an account? <span class="switch-link" onclick="switchPopup('signup-popup', 'login-popup')">Log In</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="hello.js"></script>
+</body>
+</html>
