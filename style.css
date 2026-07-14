@@ -1,0 +1,291 @@
+/* ==========================================================================
+   1. GENERAL RESET & BACKGROUND
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Aapki di hui JPG image ka link aur positioning */
+    background: url('hello1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; /* Box ko upar rakhne ke liye */
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   2. MAIN CONTENT BOX (UPAR WALA BOX)
+   ========================================================================== */
+.content-box {
+    /* Whitish-Black Custom Smoke Blend */
+    background: rgba(35, 35, 35, 0.55); 
+    
+    /* Heavy Blur piche ke blue sky tint ko dabane ke liye */
+    backdrop-filter: blur(25px) saturate(120%); 
+    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    
+    padding: 40px 50px;
+    border-radius: 15px;
+    text-align: center;
+    color: #fff; 
+    max-width: 500px;
+    width: 90%;
+    margin-top: 40px; /* Top margin se halka sa gap */
+    
+    /* Soft black shadow aur glass inner glow */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+    transition: all 0.3s ease;
+}
+
+/* Big Bold Welcome Text */
+.content-box h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Subtext & Thank You Message */
+.subtext {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #e0e0e0;
+}
+
+/* Main Button (Create Your Account) */
+.btn-main {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-main:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   3. DYNAMIC PROFILE SECTION
+   ========================================================================== */
+.profile-section {
+    display: none; 
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 0.4s ease;
+
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 30px;
+}
+
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.profile-username {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn-logout {
+    /* Content box wala hi same background blend */
+    background: rgba(35, 35, 35, 0.55); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    color: white;
+    /* Whitish border jo content box se match karegi */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    
+    /* Soft shadow taaki alag se float hota hua dikhe */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+   
+}
+
+.btn-logout:hover {
+   background: rgba(50, 50, 50, 0.7); /* Halka sa dark-bright tone hover par */
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   4. POPUPS (LOG IN / SIGN UP) - MATCHING LOOK
+   ========================================================================== */
+/* Full Screen Overlay Background */
+.overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Box - Content Box se matching theme */
+.popup-box {
+    background: rgba(35, 35, 35, 0.75); /* Thoda solid taaki inputs clear dikhein */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 35px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Popup Headings - Welcome Text ki tarah bade aur bold */
+.popup-box h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800; 
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Close Cross (X) Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   5. POPUP FORMS & INPUTS
+   ========================================================================== */
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    font-weight: 700; /* Bold label text */
+    color: #e0e0e0;
+}
+
+/* Matching Transparent Input Fields */
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #fff; 
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Popup Links & Footer text */
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.form-links a, .switch-link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.popup-footer {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #ccc;
+    text-align: center;
+}
+
+/* Popup Submit Buttons (Log In / Sign Up) */
+.btn-submit {
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
